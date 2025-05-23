@@ -1,12 +1,11 @@
-use std::cmp::min;
-
 use lifegame_core::CELL_ALIVE;
 use ratatui::{
-    Frame,
     layout::{Constraint, Direction, Layout},
     style::{Color, Style},
     widgets::{Block, Cell, Row, Table, Widget},
+    Frame,
 };
+use std::cmp::min;
 
 use crate::app::{App, AppState};
 
@@ -19,7 +18,7 @@ pub fn render(app: &mut App, frame: &mut Frame) {
     let layout = Layout::default()
         .direction(Direction::Vertical)
         .constraints(vec![Constraint::Max(1), Constraint::Min(1)])
-        .split(frame.size());
+        .split(frame.area());
     let (description, world) = (layout[0], layout[1]);
     frame.render_widget(
         Block::default().title(format!(

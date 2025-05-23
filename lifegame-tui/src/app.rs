@@ -1,7 +1,6 @@
-use std::error;
-
 use lifegame_core::{Cell, World, CELL_ALIVE, CELL_DEAD};
 use rand::Rng;
+use std::error;
 
 /// Application result type.                                                                 
 pub type AppResult<T> = std::result::Result<T, Box<dyn error::Error>>;
@@ -35,10 +34,10 @@ pub struct App {
 }
 
 fn random_cells(nx: usize, ny: usize, alive_prob: f64) -> Vec<Cell> {
-    let mut rng = rand::thread_rng();
+    let mut rng = rand::rng();
     let size = nx * ny;
     (0..size)
-        .map(|_| match rng.gen_bool(alive_prob) {
+        .map(|_| match rng.random_bool(alive_prob) {
             true => CELL_ALIVE,
             false => CELL_DEAD,
         })

@@ -7,8 +7,8 @@ edition = "2021"
 anyhow = "1.0.86"
 
 [dev-dependencies]
-criterion = "0.5.1"
-rand = "0.8.5"
+criterion = "0.6.0"
+rand = "0.9.1"
 
 [[bench]]
 name = "benchmark"

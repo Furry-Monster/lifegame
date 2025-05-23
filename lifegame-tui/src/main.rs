@@ -1,9 +1,10 @@
-use lifegame_tui::app::{App, AppResult, AppState};
-use lifegame_tui::event::{Event, EventHandler};
-use lifegame_tui::handler::handle_key_events;
-use lifegame_tui::tui::Tui;
-use ratatui::backend::CrosstermBackend;
-use ratatui::Terminal;
+use lifegame_tui::{
+    app::{App, AppResult, AppState},
+    event::{Event, EventHandler},
+    handler::handle_key_events,
+    tui::Tui,
+};
+use ratatui::{backend::CrosstermBackend, Terminal};
 use std::io;
 
 fn main() -> AppResult<()> {

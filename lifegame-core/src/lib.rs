@@ -1,6 +1,5 @@
-use std::fmt::Debug;
-
 use anyhow::{Error, Result};
+use std::fmt::Debug;
 
 pub type Cell = u8;
 pub const CELL_DEAD: Cell = 0;

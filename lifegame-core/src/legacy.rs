@@ -1,7 +1,6 @@
-use std::fmt::Debug;
-
 use anyhow::{Error, Result};
 use bit_vec::BitVec;
+use std::fmt::Debug;
 use WorldBound::{Plane, Torus};
 
 pub type Cell = bool;
