@@ -1,0 +1,11 @@
+[package]
+name = "lifegame-tui"
+version = "0.1.0"
+authors = ["furrymonster <4urrym0nster@gmail.com>"]
+license = "MIT"
+edition = "2021"
+
+[dependencies]
+lifegame-core = { path = "../lifegame-core" }
+rand = "0.8.5"
+ratatui = "0.27.0"
