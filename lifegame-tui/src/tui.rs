@@ -1,7 +1,7 @@
 use crate::{
-    app::{App, AppResult},
     event::EventHandler,
-    ui,
+    game::{App, AppResult},
+    renderer,
 };
 use ratatui::{
     backend::Backend,
@@ -52,7 +52,7 @@ impl<B: Backend> Tui<B> {
     /// [`Draw`]: ratatui::Terminal::draw                                                       
     /// [`rendering`]: crate::ui::render                                                        
     pub fn draw(&mut self, app: &mut App) -> AppResult<()> {
-        self.terminal.draw(|frame| ui::render(app, frame))?;
+        self.terminal.draw(|frame| renderer::render(app, frame))?;
         Ok(())
     }
 

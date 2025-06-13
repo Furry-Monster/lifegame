@@ -7,7 +7,7 @@ use ratatui::{
 };
 use std::cmp::min;
 
-use crate::app::{App, AppState};
+use crate::game::{App, AppState};
 
 /// Renders the user interface widgets.                                                              
 pub fn render(app: &mut App, frame: &mut Frame) {

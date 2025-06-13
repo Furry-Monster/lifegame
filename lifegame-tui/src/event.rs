@@ -1,4 +1,4 @@
-use crate::app::AppResult;
+use crate::game::AppResult;
 use ratatui::crossterm::event::{
     self, Event as CrosstermEvent, KeyEvent, KeyEventKind, MouseEvent,
 };

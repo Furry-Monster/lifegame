@@ -1,8 +1,8 @@
-pub mod app;
+pub mod game;
 
 pub mod event;
 
-pub mod ui;
+pub mod renderer;
 
 pub mod tui;
 

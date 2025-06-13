@@ -1,7 +1,7 @@
 use lifegame_tui::{
-    app::{App, AppResult, AppState},
     event::{Event, EventHandler},
-    input::handle_key_events,
+    game::{App, AppResult, AppState},
+    input::handle_key_input,
     tui::Tui,
 };
 use ratatui::{backend::CrosstermBackend, Terminal};
@@ -25,7 +25,7 @@ fn main() -> AppResult<()> {
         // Handle events.
         match tui.events.next()? {
             Event::Tick => app.tick(),
-            Event::Key(key_event) => handle_key_events(key_event, &mut app)?,
+            Event::Key(key_event) => handle_key_input(key_event, &mut app)?,
             Event::Mouse(_) => {}
             Event::Resize(_, _) => {}
         }
