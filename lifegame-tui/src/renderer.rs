@@ -7,10 +7,10 @@ use ratatui::{
 };
 use std::cmp::min;
 
-use crate::game::{App, AppState};
+use crate::game::{Game, GameState};
 
 /// Renders the user interface widgets.                                                              
-pub fn render(app: &mut App, frame: &mut Frame) {
+pub fn render(app: &mut Game, frame: &mut Frame) {
     // This is where you add new widgets.
     // See the following resources:
     // - https://docs.rs/ratatui/latest/ratatui/widgets/index.html
@@ -24,7 +24,7 @@ pub fn render(app: &mut App, frame: &mut Frame) {
         Block::default().title(format!(
             "Lifegame (gen={}) {}{}[<q>: quit]",
             app.gen,
-            if app.state == AppState::Pause {
+            if app.state == GameState::Pause {
                 "[<s>: start] "
             } else {
                 "[<s>: pause] "
@@ -42,7 +42,7 @@ pub fn render(app: &mut App, frame: &mut Frame) {
 
 struct TableWorld<'a> {
     /// application status                                                                           
-    app: &'a App,
+    app: &'a Game,
     /// area width                                                                                   
     width: u16,
     /// area height                                                                                  
@@ -50,7 +50,7 @@ struct TableWorld<'a> {
 }
 
 impl<'a> TableWorld<'a> {
-    fn new(app: &'a App, width: u16, height: u16) -> Self {
+    fn new(app: &'a Game, width: u16, height: u16) -> Self {
         Self { app, width, height }
     }
 

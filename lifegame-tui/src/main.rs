@@ -1,15 +1,15 @@
 use lifegame_tui::{
     event::{Event, EventHandler},
-    game::{App, AppResult, AppState},
+    game::{Game, GameResult, GameState},
     input::handle_key_input,
     tui::Tui,
 };
 use ratatui::{backend::CrosstermBackend, Terminal};
 use std::io;
 
-fn main() -> AppResult<()> {
+fn main() -> GameResult<()> {
     // Create an application.
-    let mut app = App::new();
+    let mut app = Game::new();
 
     // Initialize the terminal user interface.
     let backend = CrosstermBackend::new(io::stderr());
@@ -19,7 +19,7 @@ fn main() -> AppResult<()> {
     tui.init()?;
 
     // Start the main loop.
-    while app.state != AppState::Quit {
+    while app.state != GameState::Quit {
         // Render the user interface.
         tui.draw(&mut app)?;
         // Handle events.

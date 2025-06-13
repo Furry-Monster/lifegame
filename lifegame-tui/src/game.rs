@@ -3,10 +3,10 @@ use rand::Rng;
 use std::error;
 
 /// Application result type.                                                                 
-pub type AppResult<T> = std::result::Result<T, Box<dyn error::Error>>;
+pub type GameResult<T> = std::result::Result<T, Box<dyn error::Error>>;
 
 #[derive(Debug, Eq, PartialEq)]
-pub enum AppState {
+pub enum GameState {
     Run,
     Pause,
     Quit,
@@ -14,13 +14,13 @@ pub enum AppState {
 
 /// Application.                                                                             
 #[derive(Debug)]
-pub struct App {
+pub struct Game {
     /// alive cell probability for random-generated initial map                              
     pub alive_prob: f64,
     /// generation                                                                           
     pub gen: u64,
     /// application state                                                                    
-    pub state: AppState,
+    pub state: GameState,
     /// world size along with x-axis                                                         
     pub nx: usize,
     /// world size along with y-axis                                                         
@@ -44,7 +44,7 @@ fn random_cells(nx: usize, ny: usize, alive_prob: f64) -> Vec<Cell> {
         .collect::<Vec<_>>()
 }
 
-impl Default for App {
+impl Default for Game {
     fn default() -> Self {
         let (nx, ny) = (120, 60);
         let alive_prob = 0.2;
@@ -53,7 +53,7 @@ impl Default for App {
         Self {
             alive_prob,
             gen: 0,
-            state: AppState::Pause,
+            state: GameState::Pause,
             nx,
             ny,
             world,
@@ -63,19 +63,19 @@ impl Default for App {
     }
 }
 
-impl App {
+impl Game {
     /// Constructs a new instance of [`App`].                                                
     pub fn new() -> Self {
         Self::default()
     }
 
     pub fn can_reset(&self) -> bool {
-        self.state == AppState::Pause
+        self.state == GameState::Pause
     }
 
     /// Handles the tick event of the terminal.                                              
     pub fn tick(&mut self) {
-        if self.state == AppState::Run {
+        if self.state == GameState::Run {
             self.gen = self.gen.saturating_add(1);
             self.world.next();
         }
@@ -84,14 +84,14 @@ impl App {
     /// Run/pause lifegame                                                                   
     pub fn toggle(&mut self) {
         match self.state {
-            AppState::Pause => self.state = AppState::Run,
-            AppState::Run => self.state = AppState::Pause,
+            GameState::Pause => self.state = GameState::Run,
+            GameState::Run => self.state = GameState::Pause,
             _ => (),
         };
     }
 
     /// Reset lifegame                                                                       
-    pub fn reset(&mut self) -> AppResult<()> {
+    pub fn reset(&mut self) -> GameResult<()> {
         if self.can_reset() {
             let cells = random_cells(self.nx, self.ny, self.alive_prob);
             self.world = World::new(self.nx, self.ny, &cells)?;
@@ -122,6 +122,6 @@ impl App {
 
     /// Set running to false to quit the application.                                        
     pub fn quit(&mut self) {
-        self.state = AppState::Quit;
+        self.state = GameState::Quit;
     }
 }

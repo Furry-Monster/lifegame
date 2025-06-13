@@ -1,4 +1,4 @@
-use crate::game::AppResult;
+use crate::game::GameResult;
 use ratatui::crossterm::event::{
     self, Event as CrosstermEvent, KeyEvent, KeyEventKind, MouseEvent,
 };
@@ -83,7 +83,7 @@ impl EventHandler {
     ///                                                                                       
     /// This function will always block the current thread if                                 
     /// there is no data available and it's possible for more data to be sent.                
-    pub fn next(&self) -> AppResult<Event> {
+    pub fn next(&self) -> GameResult<Event> {
         Ok(self.receiver.recv()?)
     }
 }
