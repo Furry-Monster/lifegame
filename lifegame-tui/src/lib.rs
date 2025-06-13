@@ -6,4 +6,4 @@ pub mod ui;
 
 pub mod tui;
 
-pub mod handler;
+pub mod input;

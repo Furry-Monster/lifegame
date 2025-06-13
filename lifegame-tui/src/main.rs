@@ -1,7 +1,7 @@
 use lifegame_tui::{
     app::{App, AppResult, AppState},
     event::{Event, EventHandler},
-    handler::handle_key_events,
+    input::handle_key_events,
     tui::Tui,
 };
 use ratatui::{backend::CrosstermBackend, Terminal};
